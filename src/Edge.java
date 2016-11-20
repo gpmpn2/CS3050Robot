@@ -22,4 +22,7 @@ public class Edge {
 	public void setDestV(int destVert){
 		destV = destVert;
 	}
+	public String toString() {
+		return "" + destV; 
+	}
 }

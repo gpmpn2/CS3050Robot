@@ -9,5 +9,7 @@ public class Run {
 		System.out.println("BLAHHH");
 		System.out.println("Potato");
 		//addition
+		Grid grid = new Grid(3); 
+		grid.printGrid();
 	}
 }
