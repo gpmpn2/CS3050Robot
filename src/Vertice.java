@@ -31,6 +31,9 @@ public class Vertice {
 	public void setDestV(LinkedList<Edge> edge){
 		e = edge;
 	}
+	public void setOccupied(boolean x) {
+		o = x; 
+	}
 	public String toString() {
 		return number + ": connected to " + e + "\n";
 	}

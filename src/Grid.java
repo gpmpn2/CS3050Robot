@@ -23,6 +23,11 @@ public class Grid {
 	public void printGrid() {
 			System.out.println(v);
 	}
+	
+	public void setOccupiedVertice(int position, boolean occupied) {
+		v.get(position-1).setOccupied(occupied); 
+	}
+	
 	private void setUpGraph() {
 		v = new ArrayList<Vertice>(this.size);
 		int n = size*size; 
@@ -37,6 +42,8 @@ public class Grid {
 			
 		}
 	}
+	
+	
 	
 	/* determines if the Vertice to be added is a corner, edge, or middle Vertice */
 	private VerticeType determineEdgeType(int i) {
