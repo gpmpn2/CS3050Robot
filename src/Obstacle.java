@@ -1,4 +1,5 @@
 
+
 public class Obstacle {
 	private int position;
 	private int speed;
@@ -39,120 +40,122 @@ public class Obstacle {
 	
 	private void nextMove() {
 		int size = grid.getSize();
+		int posHolder = position; 
+		Direction dirHolder = direction;
 		
 		for(int i = 0; i< speed; i++) {
 			int type = position % size;
 			switch(direction) {
 			case EAST:
 				if( type == 0) {
-					nextDirection = Direction.WEST; 
-					nextPosition = position -1;
+					direction = Direction.WEST; 
+					position = position -1;
 				}
 				else {
-					nextPosition = position +1; 
+					position = position +1; 
 				}
 				break;
 			case WEST:
 				if( type == 1 ) {
-					nextDirection = Direction.EAST; 
-					nextPosition = position +1;
+					direction = Direction.EAST; 
+					position = position +1;
 				}
 				else {
-					nextPosition = position - 1; 
+					position = position - 1; 
 				}
 				break;
 			case NORTH:
 				if( position <= size ) {
-					nextDirection = Direction.SOUTH; 
-					nextPosition = position + size;
+					direction = Direction.SOUTH; 
+					position = position + size;
 				}
 				else {
-					nextPosition = position - size; 
+					position = position - size; 
 				}
 				break;
 			case SOUTH:
 				if( position >= ((size*size)-size) ) {
-					nextDirection = Direction.NORTH; 
-					nextPosition = position - size;
+					direction = Direction.NORTH; 
+					position = position - size;
 				}
 				else {
-					nextPosition = position + size; 
+					position = position + size; 
 				}
 				break;
 			case NORTHEAST:
 				if( position <= size) {
 					if(type == 0) {
-						nextDirection = Direction.SOUTHWEST;
-						nextPosition = position + size -1;
+						direction = Direction.SOUTHWEST;
+						position = position + size -1;
 					}
 					else {
-						nextDirection = Direction.SOUTHEAST; 
-						nextPosition = position + size + 1;
+						direction = Direction.SOUTHEAST; 
+						position = position + size + 1;
 					}
 				}
 				else if(type == 0) {
-					nextDirection = Direction.NORTHWEST;
-					nextPosition = position - size - 1;
+					direction = Direction.NORTHWEST;
+					position = position - size - 1;
 				}
 				else {
-					nextPosition = position - size +1; 
+					position = position - size +1; 
 				}
 				break;
 			case NORTHWEST:
 				if( position <= size) {
 					if(type == 1) {
-						nextDirection = Direction.SOUTHEAST;
-						nextPosition = position + size + 1;
+						direction = Direction.SOUTHEAST;
+						position = position + size + 1;
 					}
 					else {
-						nextDirection = Direction.SOUTHWEST; 
-						nextPosition = position + size - 1;
+						direction = Direction.SOUTHWEST; 
+						position = position + size - 1;
 					}
 				}
 				else if(type == 1) {
-					nextDirection = Direction.NORTHEAST;
-					nextPosition = position - size + 1;
+					direction = Direction.NORTHEAST;
+					position = position - size + 1;
 				}
 				else {
-					nextPosition = position - size - 1; 
+					position = position - size - 1; 
 				}
 				break;
 			case SOUTHEAST:
 				if( position >= ((size*size)-size)) {
 					if(type == 0) {
-						nextDirection = Direction.NORTHWEST;
-						nextPosition = position - size -1;
+						direction = Direction.NORTHWEST;
+						position = position - size -1;
 					}
 					else {
-						nextDirection = Direction.NORTHEAST; 
-						nextPosition = position - size + 1;
+						direction = Direction.NORTHEAST; 
+						position = position - size + 1;
 					}
 				}
 				else if(type == 0) {
-					nextDirection = Direction.SOUTHWEST;
-					nextPosition = position + size - 1;
+					direction = Direction.SOUTHWEST;
+					position = position + size - 1;
 				}
 				else {
-					nextPosition = position + size +1; 
+					position = position + size +1; 
 				}
 				break;
 			case SOUTHWEST:
 				if( position >= ((size*size)-size)) {
 					if(type == 1) {
-						nextDirection = Direction.NORTHEAST;
-						nextPosition = position - size + 1;
+						direction = Direction.NORTHEAST;
+						position = position - size + 1;
 					}
 					else {
-						nextDirection = Direction.NORTHWEST; 
-						nextPosition = position - size - 1;
+						direction = Direction.NORTHWEST; 
+						position = position - size - 1;
 					}
 				}
 				else if(type == 1) {
-					nextDirection = Direction.SOUTHEAST;
-					nextPosition = position + size + 1;
+					direction = Direction.SOUTHEAST;
+					position = position + size + 1;
 				}
 				else {
-					nextPosition = position + size - 1; 
+					position = position + size - 1; 
 				}
 				break;
 			default:
@@ -160,7 +163,10 @@ public class Obstacle {
 			
 			}
 		}
-		grid.setOccupiedVertice(position, true);
+		nextPosition = position; 
+		nextDirection = direction; 
+		position = posHolder; 
+		direction = dirHolder; 
 	}
 	
 	public void update() {

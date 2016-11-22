@@ -157,4 +157,8 @@ private LinkedList<Edge> setUpEdgeList(VerticeType type, int i) {
 	}
 	return edges; 
 }
+
+	public void printGameState(int robotPos, int obstaclePos1, int obstaclePos2, int turnNumber) {
+	
+	}
 }

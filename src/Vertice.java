@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 
+
 public class Vertice {
 	private LinkedList<Edge> e;
 	private boolean o;
