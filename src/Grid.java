@@ -20,8 +20,34 @@ public class Grid {
 		return v;
 	}
 	
-	public void printGrid() {
-			System.out.println(v);
+	public void printGrid(int startR, int destination, int startO1, int startO2) {
+			//System.out.println(v);
+		int x = 1; 
+		for(int i = 1; i<=size; i++) {
+			for(int j = 1; j<=size; j++) {
+				if(x == startR) {
+					System.out.print("R ");
+					x++;
+				}
+				else if (x == destination) {
+					System.out.print("D ");
+					x++;
+				}
+				else if (x == startO1) {
+					System.out.print("O ");
+					x++;
+				}
+				else if (x == startO2) {
+					System.out.print("O ");
+					x++;
+				}
+				else {
+					System.out.print(x + " ");
+					x++;
+				}
+			}
+			System.out.println("");
+		}
 	}
 	
 	public void setOccupiedVertice(int position, boolean occupied) {
@@ -159,6 +185,6 @@ private LinkedList<Edge> setUpEdgeList(VerticeType type, int i) {
 }
 
 	public void printGameState(int robotPos, int obstaclePos1, int obstaclePos2, int turnNumber) {
-	
+		System.out.println(turnNumber + "-> " + "Robot: " + robotPos + " Obstacle1: " + obstaclePos1 + " Obstacle2: " + obstaclePos2 );
 	}
 }
