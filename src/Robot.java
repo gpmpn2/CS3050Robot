@@ -180,5 +180,6 @@ public class Robot {
 	
 	public void gameLost() {
 		System.out.println("The Robot was killed by an obstacle");
+		printPathTaken();
 	}
 }

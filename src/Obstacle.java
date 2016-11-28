@@ -1,10 +1,10 @@
-
+import java.util.ArrayList;
 
 public class Obstacle {
 	private int position;
 	private int speed;
 	private Direction direction; 
-	private int[] pathTaken;
+	private ArrayList<Integer> pathTaken;
 	private Grid grid; 
 	private Direction nextDirection;
 	private int nextPosition;
@@ -14,6 +14,8 @@ public class Obstacle {
 		this.speed = speed;
 		this.direction = direction; 
 		this.grid = grid;
+		pathTaken = new ArrayList<Integer>(); 
+		pathTaken.add(position);
 		grid.setOccupiedVertice(position, true);
 		nextMove();
 	}
@@ -28,6 +30,10 @@ public class Obstacle {
 	
 	public int getNextPosition() {
 		return nextPosition; 
+	}
+	
+	public ArrayList<Integer> getPathTaken() {
+		return pathTaken;
 	}
 	
 	public void setPoisiton(int pos){
@@ -174,6 +180,8 @@ public class Obstacle {
 		position = nextPosition;
 		direction = nextDirection; 
 		grid.setOccupiedVertice(position, true);
+		pathTaken.add(position);
 		nextMove();
 	}
+
 }
