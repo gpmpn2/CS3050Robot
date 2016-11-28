@@ -16,11 +16,13 @@ public class Configuration {
 	private int speedOb;
 	private int obDirNS;//Determines if it moves north/south
 	private int obDirEW;//Determines if it moves east/west
+	private Direction direction1; 
 	private int startObXTwo;
 	private int startObYTwo;
 	private int speedObTwo;
 	private int obDirNSTwo;
 	private int obDirEWTwo;
+	private Direction direction2; 
 	public Configuration(int size,int startX, int startY, int endX, int endY, int startObX, int startObY,
 			int speedOb, int obDirNS, int obDirEW, int startObXTwo, int startObYTwo,int speedObTwo,
 				int obDirNSTwo, int obDirEWTwo){
@@ -130,7 +132,56 @@ public class Configuration {
 	public void setObDirEWTwo(int obDirEWTwo) {
 		this.obDirEWTwo = obDirEWTwo;
 	}
+	public Direction getDirection1() {
+		return direction1; 
+	}
+	public void setDirection1(Direction dir) {
+		direction1 = determineDirection(obDirNS, obDirEW);
+	}
+	public Direction getDirection2() {
+		return direction2; 
+	}
+	public void setDirection2() {
+		direction2 = determineDirection(obDirNSTwo, obDirEWTwo);
+	}
 	
-	
+	public Direction determineDirection(int NS, int WE) {
+		Direction dir; 
+		if(NS  == 1) {
+			if(WE == 1) {
+				dir = Direction.SOUTHEAST;
+			}
+			else if(WE == -1) {
+				dir = Direction.SOUTHWEST;
+			}
+			else {
+				dir = Direction.SOUTH; 
+			}
+		}
+		else if(NS == -1) {
+			if(WE == 1) {
+				dir = Direction.NORTHEAST;
+			}
+			else if(WE == -1) {
+				dir = Direction.NORTHWEST;
+			}
+			else {
+				dir = Direction.NORTH; 
+			}
+		}
+		else {
+			if(WE == 1) {
+				dir = Direction.EAST;
+			}
+			else if(WE == -1) {
+				dir = Direction.WEST;
+			}
+			else {
+				dir = Direction.STATIONARY; 
+			}
+		}
+		
+		return dir; 
+	}
 	
 }

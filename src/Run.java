@@ -6,17 +6,21 @@ public class Run {
 		//Creating an empty config
 		Configuration config = new Configuration(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1, -1);
 		LoadInput.readFile(config,"input.txt");
+		
 		int turnNumber = 1;
 		int gameStatus = 0;
-		int destination = LoadInput.findGridSpace(config, config.getStartX(), config.getStartY()); 
-		int startR = config.getStartX(), startO1 = LoadInput.findGridSpace(config, config.getStartObX(), config.getStartObY()), startO2 = LoadInput.findGridSpace(config, config.getStartObXTwo(), config.getStartObYTwo()); ;
+		
+		int destination = LoadInput.findGridSpace(config, config.getEndX(), config.getEndY()); 
+		int startR = LoadInput.findGridSpace(config, config.getStartX(), config.getStartY()); 
+		int startO1 = LoadInput.findGridSpace(config, config.getStartObX(), config.getStartObY());
+		int startO2 = LoadInput.findGridSpace(config, config.getStartObXTwo(), config.getStartObYTwo()); ;
 		
 		Grid grid = new Grid(config.getSize()); 
 		grid.printGrid(startR, destination, startO1, startO2);
 		
 		Robot robot = new Robot(startR, destination, grid);
-		Obstacle obstacle1 = new Obstacle(startO1, config.getSpeedOb(), Direction.NORTH, grid);
-		Obstacle obstacle2 = new Obstacle(startO2, config.getSpeedObTwo(), Direction.WEST, grid);
+		Obstacle obstacle1 = new Obstacle(startO1, config.getSpeedOb(), config.determineDirection(config.getObDirNS(), config.getObDirEW()), grid);
+		Obstacle obstacle2 = new Obstacle(startO2, config.getSpeedObTwo(), config.determineDirection(config.getObDirNSTwo(), config.getObDirEWTwo()), grid);
 		
 		
 		grid.printGameState(robot.getPosition(), obstacle1.getPosition(), obstacle2.getPosition(), turnNumber);

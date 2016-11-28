@@ -103,7 +103,8 @@ public class LoadInput {
 	
 	public static int findGridSpace(Configuration c,int x, int y){
 		int gridSpace;
-		gridSpace = (c.getSize()*y) - (c.getSize() - x);
+		gridSpace = (c.getSize()*(x-1)) + y;
+		//gridSpace = (c.getSize()*y) - (c.getSize() - x);
 		return gridSpace;
 	}
 }
