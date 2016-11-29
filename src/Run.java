@@ -5,7 +5,7 @@ public class Run {
 	public static void main(String args[]){
 		//Creating an empty config
 		Configuration config = new Configuration(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1, -1);
-		LoadInput.readFile(config,"input.txt");
+		LoadInput.readFile(config, args[0]);
 		
 		int turnNumber = 1;
 		int gameStatus = 0;
@@ -16,7 +16,7 @@ public class Run {
 		int startO2 = LoadInput.findGridSpace(config, config.getStartObXTwo(), config.getStartObYTwo()); ;
 		
 		Grid grid = new Grid(config.getSize()); 
-		grid.printGrid(startR, destination, startO1, startO2);
+		//grid.printGrid(startR, destination, startO1, startO2);
 		
 		Robot robot = new Robot(startR, destination, grid);
 		Obstacle obstacle1 = new Obstacle(startO1, config.getSpeedOb(), config.determineDirection(config.getObDirNS(), config.getObDirEW()), grid);
@@ -35,14 +35,14 @@ public class Run {
 		}
 		if (gameStatus == 2) {
 			robot.gameWon(); 
-			System.out.println("Obstacle 1 took path " + obstacle1.getPathTaken());
-			System.out.println("Obstacle 2 took path " + obstacle2.getPathTaken());
+			obstacle1.printPathTaken();
+			obstacle2.printPathTaken();
 			System.exit(0);
 		}
 		else {
 			robot.gameLost(); 
-			System.out.println("Obstacle 1 took path " + obstacle1.getPathTaken());
-			System.out.println("Obstacle 2 took path " + obstacle2.getPathTaken());
+			obstacle1.printPathTaken();
+			obstacle2.printPathTaken();
 			System.exit(1);
 		}
 	}

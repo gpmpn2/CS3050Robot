@@ -170,7 +170,11 @@ public class Robot {
 	}
 	
 	private void printPathTaken() {
-		System.out.println("The Robot took path: " + pathTaken);
+		System.out.print("The Robot took path: [");
+		for(Integer temp: pathTaken) {
+			System.out.print(grid.convertPosToOrderedPair(temp) + " ");
+		}
+		System.out.print("]\n");
 	}
 	
 	public void gameWon() {
@@ -182,4 +186,5 @@ public class Robot {
 		System.out.println("The Robot was killed by an obstacle");
 		printPathTaken();
 	}
+	
 }

@@ -114,6 +114,7 @@ public class Grid {
 
 private LinkedList<Edge> setUpEdgeList(VerticeType type, int i) {
 	LinkedList<Edge> edges = new LinkedList<>();
+	/*
 	if(size == 1) {
 		edges.add(new Edge(1,1));
 		return edges; 
@@ -180,11 +181,20 @@ private LinkedList<Edge> setUpEdgeList(VerticeType type, int i) {
 	default:
 		break;
 	
-	}
+	}*/
 	return edges; 
 }
 
 	public void printGameState(int robotPos, int obstaclePos1, int obstaclePos2, int turnNumber) {
-		System.out.println(turnNumber + "-> " + "Robot: " + robotPos + " Obstacle1: " + obstaclePos1 + " Obstacle2: " + obstaclePos2 );
+		System.out.println(turnNumber + "-> " + "Robot: " + convertPosToOrderedPair(robotPos) + " Obstacle1: " + convertPosToOrderedPair(obstaclePos1) + " Obstacle2: " + convertPosToOrderedPair(obstaclePos2) );
+	}
+	
+	public String convertPosToOrderedPair(int pos) {
+		String OP; 
+		int x, y; 
+		x = ((int)pos/size) +1; 
+		y = pos%size; 
+		OP ="(" + x + "," + y + ")"; 
+		return OP; 
 	}
 }

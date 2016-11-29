@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class Obstacle {
+	private static int numObstacles = 0;
+	private String name;
 	private int position;
 	private int speed;
 	private Direction direction; 
@@ -10,10 +12,12 @@ public class Obstacle {
 	private int nextPosition;
 	
 	public Obstacle(int position, int speed, Direction direction, Grid grid){
+		numObstacles++;
 		this.position = position;
 		this.speed = speed;
 		this.direction = direction; 
 		this.grid = grid;
+		this.name = "Obstacle " + numObstacles;
 		pathTaken = new ArrayList<Integer>(); 
 		pathTaken.add(position);
 		grid.setOccupiedVertice(position, true);
@@ -182,6 +186,13 @@ public class Obstacle {
 		grid.setOccupiedVertice(position, true);
 		pathTaken.add(position);
 		nextMove();
+	}
+	public void printPathTaken() {
+		System.out.print(name + " took path: [");
+		for(Integer temp: pathTaken) {
+			System.out.print(grid.convertPosToOrderedPair(temp) + " ");
+		}
+		System.out.print("]\n");
 	}
 
 }
