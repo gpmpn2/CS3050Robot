@@ -5,7 +5,9 @@ public class Run {
 	public static void main(String args[]){
 		//Creating an empty config
 		Configuration config = new Configuration(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1, -1);
-		LoadInput.readFile(config,"input.txt");
+		if(!LoadInput.readFile(config,args[0])){
+			return;
+		}
 		
 		int turnNumber = 1;
 		int gameStatus = 0;
