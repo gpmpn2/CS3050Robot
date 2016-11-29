@@ -54,8 +54,13 @@ public class LoadInput {
 					if(temp[1].contains("+")){
 						temp[1] = temp[1].substring(0, 2);
 						temp[1] = temp[1].substring(1);
-					} else
-						temp[1] = temp[1].substring(0,1);
+					} else {
+						if(temp[1].contains("-")){
+							temp[1] = temp[1].substring(0, 2);
+						} else {
+							temp[1] = temp[1].substring(0,1);
+						}
+					}
 					
 					if(temp[0].contains("+"))
 						temp[0] = temp[0].substring(1);
@@ -78,9 +83,13 @@ public class LoadInput {
 					if(temp[1].contains("+")){
 						temp[1] = temp[1].substring(0, 2);
 						temp[1] = temp[1].substring(1);
-					} else
-						temp[1] = temp[1].substring(0,1);
-					
+					} else {
+						if(temp[1].contains("-")){
+							temp[1] = temp[1].substring(0, 2);
+						} else {
+							temp[1] = temp[1].substring(0,1);
+						}
+					}
 					if(temp[0].contains("+"))
 						temp[0] = temp[0].substring(1);
 					c.setObDirNSTwo(Integer.parseInt(temp[0]));
