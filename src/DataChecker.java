@@ -1,6 +1,13 @@
 
 public class DataChecker {
 
+	/**
+	 * Checks the format of a line.
+	 * @param line
+	 * @param isPosition
+	 * @param size
+	 * @return
+	 */
 	public static boolean checkFormat(String line, boolean isPosition,int size){
 		String sizeUpdate = Integer.toString(size);
 		int len = sizeUpdate.length();
@@ -25,6 +32,12 @@ public class DataChecker {
 		return true;
 	}
 	
+	/**
+	 * Checks if the size of the point is to large for the Grid's size.
+	 * @param amount
+	 * @param size
+	 * @return
+	 */
 	public static boolean checkAmount(int amount, int size){
 		if(amount > size){
 			System.out.println("Data Point: " + amount + " is to large for the grid specified");

@@ -43,6 +43,7 @@ public class Robot {
 	//if the next postition of the obstacles will not be in the optimal path, then move there. 
 	//if they are going to be in the path, then stay put, 
 	//if they are going to be in the path and in positon of the robot, find an alternate path. 
+	private int stagnantCount;
 	public void move(int nextPosition1, int nextPosition2) {
 		//if the next vertice in the path is not going to be occupied next turn more to it. 
 		if(nextPosition1 != path.get(moveNumber) && nextPosition2 != path.get(moveNumber)) {
@@ -50,8 +51,11 @@ public class Robot {
 			moveNumber++;
 		}
 		else if(nextPosition1 != position && nextPosition2 != position) {
-			pathTaken.add(moveNumber, position);
-			return; 
+			if(stagnantCount < 4){
+				pathTaken.add(moveNumber, position);
+				stagnantCount +=1;
+				return; 
+			}
 		}
 		else {
 			if(!findAlternatePath()) {
@@ -163,8 +167,12 @@ public class Robot {
 			return 1; 
 		}
 		if(position == destination) {
-			System.out.println("The RObot made it to its destination! Game over :)");
+			System.out.println("The Robot made it to its destination! Game over :)");
 			return 2; 
+		}
+		if(stagnantCount >=4){
+			System.out.println("Escape is futile. Game over!");
+			return 1;
 		}
 		return 0; 
 	}
