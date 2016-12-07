@@ -25,9 +25,9 @@ public class Vertice {
 		return type;
 	}
 	
-	public void setStartV(boolean occ){
-		o = occ;
-	}
+	//public void setStartV(boolean occ){
+	//	o = occ;
+	//}
 	
 	/*public void setDestV(LinkedList<Edge> edge){
 		e = edge;

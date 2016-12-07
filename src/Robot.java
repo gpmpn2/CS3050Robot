@@ -15,7 +15,6 @@ public class Robot {
 		this.grid = grid; 
 		path = new ArrayList<Integer>();
 		pathTaken = new ArrayList<Integer>(); 
-		//grid.setOccupiedVertice(position, true);
 		findPath();
 	}
 	
@@ -42,8 +41,8 @@ public class Robot {
 	
 	//if the next postition of the obstacles will not be in the optimal path, then move there. 
 	//if they are going to be in the path, then stay put, 
-	//if they are going to be in the path and in positon of the robot, find an alternate path. 
-	private int stagnantCount;
+	//if they are going to be in the path and in position of the robot, find an alternate path. 
+
 	public void move(int nextPosition1, int nextPosition2) {
 		//if the next vertice in the path is not going to be occupied next turn more to it. 
 		if(nextPosition1 != path.get(moveNumber) && nextPosition2 != path.get(moveNumber)) {
@@ -51,11 +50,8 @@ public class Robot {
 			moveNumber++;
 		}
 		else if(nextPosition1 != position && nextPosition2 != position) {
-			if(stagnantCount < 4){
 				pathTaken.add(moveNumber, position);
-				stagnantCount +=1;
-				return; 
-			}
+				return; 	
 		}
 		else {
 			if(!findAlternatePath()) {
@@ -66,7 +62,7 @@ public class Robot {
 		}
 		pathTaken.add(position);
 	}
-	
+	//uses a DFS from the RObot's start position to the destination 
 	private void findPath() {
 		path.clear();
 		path.add(position);
@@ -121,12 +117,12 @@ public class Robot {
 		return; 
 	}
 	
-	//finds the best move that still gets us closer to the destination. Also runds findPath to update the optimal path from the new location. 
+	//finds the best move that still gets us closer to the destination. Also runs findPath to update the optimal path from the new location. 
 	private boolean findAlternatePath() {
 		int size = grid.getSize();
 		int diff = position - path.get(moveNumber);
-		int modDestination = destination % size; 
-		int modPosition = position % size; 
+		int modDestination = (destination-1) % size; 
+		int modPosition = (position-1) % size; 
 		int nextPos;
 		if(diff > 0) {
 			if(modDestination > modPosition) {
@@ -170,9 +166,9 @@ public class Robot {
 			System.out.println("The Robot made it to its destination! Game over :)");
 			return 2; 
 		}
-		if(stagnantCount >=4){
-			System.out.println("Escape is futile. Game over!");
-			return 1;
+		if(grid.checkForInfiniteLoop() == true){
+			System.out.println("The Robot is stuck in a loop because the destination vertex is always occupied by an Obstacle. Escape is futile. Game over!");
+			return 3;
 		}
 		return 0; 
 	}
@@ -190,8 +186,13 @@ public class Robot {
 		printPathTaken();
 	}
 	
-	public void gameLost() {
-		System.out.println("The Robot was killed by an obstacle");
+	public void gameLost(int status) {
+		if(status == 1) {
+			System.out.println("The Robot was killed by an obstacle");
+		}
+		else {
+			System.out.println("The Robot is stuck in a loop because the destination vertex is always occupied by an Obstacle. Escape is futile. Game over!");
+		}
 		printPathTaken();
 	}
 	

@@ -83,8 +83,8 @@ public class Obstacle {
 					position = position - size; 
 				}
 				break;
-			case SOUTH:
-				if( position >= ((size*size)-size) ) {
+			case SOUTH://changed from >=
+				if( position > ((size*size)-size) ) {
 					direction = Direction.NORTH; 
 					position = position - size;
 				}
@@ -131,7 +131,7 @@ public class Obstacle {
 				}
 				break;
 			case SOUTHEAST:
-				if( position >= ((size*size)-size)) {
+				if( position > ((size*size)-size)) {
 					if(type == 0) {
 						direction = Direction.NORTHWEST;
 						position = position - size -1;
@@ -150,7 +150,7 @@ public class Obstacle {
 				}
 				break;
 			case SOUTHWEST:
-				if( position >= ((size*size)-size)) {
+				if( position > ((size*size)-size)) {
 					if(type == 1) {
 						direction = Direction.NORTHEAST;
 						position = position - size + 1;

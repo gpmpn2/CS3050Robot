@@ -18,7 +18,7 @@ public class Run {
 		int startO1 = LoadInput.findGridSpace(config, config.getStartObX(), config.getStartObY());
 		int startO2 = LoadInput.findGridSpace(config, config.getStartObXTwo(), config.getStartObYTwo()); ;
 		
-		Grid grid = new Grid(config.getSize()); 
+		Grid grid = new Grid(config.getSize(), destination); 
 		//grid.printGrid(startR, destination, startO1, startO2);
 		
 		Robot robot = new Robot(startR, destination, grid);
@@ -35,6 +35,10 @@ public class Run {
 			obstacle2.update();
 			turnNumber++;
 			grid.printGameState(robot.getPosition(), obstacle1.getPosition(), obstacle2.getPosition(), turnNumber);
+			if(turnNumber > (10*grid.getSize())) {
+				gameStatus = 3;
+				break; 
+			}
 		}
 		if (gameStatus == 2) {
 			robot.gameWon(); 
@@ -43,7 +47,7 @@ public class Run {
 			System.exit(0);
 		}
 		else {
-			robot.gameLost(); 
+			robot.gameLost(gameStatus); 
 			obstacle1.printPathTaken();
 			obstacle2.printPathTaken();
 			System.exit(1);

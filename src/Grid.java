@@ -6,9 +6,12 @@ public class Grid {
 
 	private ArrayList<Vertice> v;
 	private int size;
+	private int destinationVertex; 
+	private int loopCounter = 0; 
 	
-	public Grid(int size){
+	public Grid(int size, int dest){
 		this.size = size;
+		destinationVertex = dest;
 		setUpGraph();
 	}
 	
@@ -57,12 +60,12 @@ public class Grid {
 	private void setUpGraph() {
 		v = new ArrayList<Vertice>(this.size);
 		int n = size*size; 
-		LinkedList<Edge> edge; 
+		LinkedList<Edge> edge = null; 
 		
 		
 		for(int i = 1; i<=n; i++) {
 			VerticeType type = determineEdgeType(i);
-			edge = setUpEdgeList(type, i); 
+			//edge = setUpEdgeList(type, i); 
 			v.add(new Vertice(type, false, edge, i));
 			
 			
@@ -185,15 +188,34 @@ private LinkedList<Edge> setUpEdgeList(VerticeType type, int i) {
 	return edges; 
 }
 
+	public boolean checkForInfiniteLoop() {
+		if(v.get(destinationVertex-1).getOccupied() == true) {
+			loopCounter++;
+			if(loopCounter > 3) {
+				return true;
+			}
+		}
+		else {
+			loopCounter = 0; 
+		}
+		return false; 
+	}
+	
 	public void printGameState(int robotPos, int obstaclePos1, int obstaclePos2, int turnNumber) {
 		System.out.println(turnNumber + "-> " + "Robot: " + convertPosToOrderedPair(robotPos) + " Obstacle1: " + convertPosToOrderedPair(obstaclePos1) + " Obstacle2: " + convertPosToOrderedPair(obstaclePos2) );
 	}
 	
 	public String convertPosToOrderedPair(int pos) {
 		String OP; 
-		int x, y; 
-		x = ((int)pos/size) +1; 
+		int x, y, mod;
 		y = pos%size; 
+		x = ((int)pos/size) +1; 
+		if(y == 0) {
+			y = size; 
+			x = (int) (pos/size); 
+		}
+		
+		
 		OP ="(" + x + "," + y + ")"; 
 		return OP; 
 	}
