@@ -39,7 +39,7 @@ public class LoadInput {
 						return false;
 					}
 					temp[0] = temp[0].substring(1);
-					temp[1] = temp[1].substring(0,1);
+					temp[1] = temp[1].substring(0,temp[1].length()-1);
 					if(!DataChecker.checkAmount(Integer.parseInt(temp[0]), c.getSize()) || !DataChecker.checkAmount(Integer.parseInt(temp[1]), c.getSize())){
 						return false;
 					}
@@ -57,7 +57,7 @@ public class LoadInput {
 						return false;
 					}
 					temp[0] = temp[0].substring(1);
-					temp[1] = temp[1].substring(0,1);
+					temp[1] = temp[1].substring(0,temp[1].length()-1);
 					if(!DataChecker.checkAmount(Integer.parseInt(temp[0]), c.getSize()) || !DataChecker.checkAmount(Integer.parseInt(temp[1]), c.getSize())){
 						return false;
 					}
@@ -75,7 +75,7 @@ public class LoadInput {
 						return false;
 					}
 					temp[0] = temp[0].substring(1);
-					temp[1] = temp[1].substring(0,1);
+					temp[1] = temp[1].substring(0,temp[1].length()-1);
 					if(!DataChecker.checkAmount(Integer.parseInt(temp[0]), c.getSize()) || !DataChecker.checkAmount(Integer.parseInt(temp[1]), c.getSize())){
 						return false;
 					}
@@ -129,7 +129,7 @@ public class LoadInput {
 						return false;
 					}
 					temp[0] = temp[0].substring(1);
-					temp[1] = temp[1].substring(0,1);
+					temp[1] = temp[1].substring(0,temp[1].length()-1);
 					if(!DataChecker.checkAmount(Integer.parseInt(temp[0]), c.getSize()) || !DataChecker.checkAmount(Integer.parseInt(temp[1]), c.getSize())){
 						return false;
 					}
